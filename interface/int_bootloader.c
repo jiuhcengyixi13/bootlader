@@ -25,6 +25,7 @@ static void Int_flash_erase(void)
         volatile uint8_t *data = (volatile uint8_t *)(APP_START_ADDRESS + i + g_uart_rec_offset);
         if (*data != 0xff)
         {
+            printf("erase:%d,%d,%c", i, g_uart_rec_offset, data);
             is_erase = 1;
             // 计算页起始地址（页对齐）
             page_addr = (APP_START_ADDRESS + i + g_uart_rec_offset) -
@@ -58,7 +59,8 @@ static void Int_flash_write_with_last(void)
 
         if (i == 0) // 第一个半字：拼接遗留字节与当前第一个字节
         {
-            data16 = g_last_byte | (g_uart_rec_buff[i] << 8);
+            // data16 = g_last_byte | (g_uart_rec_buff[i] << 8);
+            data16 = (g_uart_rec_buff[i] << 8) | g_last_byte;
         }
         else // 后续半字：拼接当前字节与前一字节
         {
@@ -81,7 +83,8 @@ static void Int_flash_write_no_last(void)
         uint32_t flash_addr = APP_START_ADDRESS + i + g_uart_rec_offset;
         if (i + 1 < g_uart_rec_len)
         {
-            data16 = (uint16_t)(g_uart_rec_buff[i] << 8 | g_uart_rec_buff[i + 1]);
+            // data16 = (uint16_t)(g_uart_rec_buff[i] << 8 | g_uart_rec_buff[i + 1]);
+            data16 = (uint16_t)(g_uart_rec_buff[i + 1] << 8 | g_uart_rec_buff[i]);
             HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, flash_addr, data16);
         }
     }
