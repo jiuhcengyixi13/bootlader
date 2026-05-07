@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+"p02_bootloard_hal\startup_stm32f103xb.o"
+"p02_bootloard_hal\main.o"
+"p02_bootloard_hal\gpio.o"
+"p02_bootloard_hal\usart.o"
+"p02_bootloard_hal\stm32f1xx_it.o"
+"p02_bootloard_hal\stm32f1xx_hal_msp.o"
+"p02_bootloard_hal\stm32f1xx_hal_gpio_ex.o"
+"p02_bootloard_hal\stm32f1xx_hal_tim.o"
+"p02_bootloard_hal\stm32f1xx_hal_tim_ex.o"
+"p02_bootloard_hal\stm32f1xx_hal_uart.o"
+"p02_bootloard_hal\stm32f1xx_hal.o"
+"p02_bootloard_hal\stm32f1xx_hal_rcc.o"
+"p02_bootloard_hal\stm32f1xx_hal_rcc_ex.o"
+"p02_bootloard_hal\stm32f1xx_hal_gpio.o"
+"p02_bootloard_hal\stm32f1xx_hal_dma.o"
+"p02_bootloard_hal\stm32f1xx_hal_cortex.o"
+"p02_bootloard_hal\stm32f1xx_hal_pwr.o"
+"p02_bootloard_hal\stm32f1xx_hal_flash.o"
+"p02_bootloard_hal\stm32f1xx_hal_flash_ex.o"
+"p02_bootloard_hal\stm32f1xx_hal_exti.o"
+"p02_bootloard_hal\system_stm32f1xx.o"
+"p02_bootloard_hal\int_bootloader.o"
+--library_type=microlib --strict --scatter "P02_bootloard_Hal\P02_bootloard_Hal.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "P02_bootloard_Hal.map" -o P02_bootloard_Hal\P02_bootloard_Hal.axf
